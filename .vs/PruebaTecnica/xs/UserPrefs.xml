@@ -1,19 +1,35 @@
-﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{0EF17CBB-376C-4671-82CC-82EE44234FDE}|Default">
-  <MonoDevelop.Ide.Workbench>
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{0EF17CBB-376C-4671-82CC-82EE44234FDE}|PruebaTecnica">
+  <MonoDevelop.Ide.ItemProperties.PruebaTecnica.Web.PruebaTecnica.Web PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="PruebaTecnica/Controllers/WeatherForecastController.cs">
+    <Files>
+      <File FileName="PruebaTecnica/Controllers/WeatherForecastController.cs" Line="8" Column="36" />
+      <File FileName="PruebaTecnica/Startup.cs" Line="9" Column="24" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="PruebaTecnica" expanded="True" />
+          <Node name="PruebaTecnica" expanded="True">
+            <Node name="PruebaTecnica.core" expanded="True">
+              <Node name="PruebaTecnica.Core" expanded="True" />
+            </Node>
+            <Node name="PruebaTecnica.Web" expanded="True">
+              <Node name="PruebaTecnica.Web" expanded="True">
+                <Node name="Controllers" expanded="True">
+                  <Node name="WeatherForecastController.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Web.PruebaTecnica PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <DisabledProjects>
     <String>Core/Core.csproj</String>
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.PruebaTecnica.core.PruebaTecnica.Core FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
