@@ -13,7 +13,7 @@ namespace PruebaTecnica.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching","git"
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching","gitHUBNOW"
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
