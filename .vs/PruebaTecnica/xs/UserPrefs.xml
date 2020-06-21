@@ -1,14 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{0EF17CBB-376C-4671-82CC-82EE44234FDE}|Default">
-  <MonoDevelop.Ide.ItemProperties.core.core FirstBuild="True" />
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="PruebaTecnica" expanded="True">
-            <Node name="core" expanded="True">
-              <Node name="core" expanded="True" selected="True" />
-            </Node>
-          </Node>
+          <Node name="PruebaTecnica" expanded="True" />
         </State>
       </Pad>
     </Pads>
