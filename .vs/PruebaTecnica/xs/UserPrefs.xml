@@ -1,19 +1,23 @@
-﻿<Properties StartupConfiguration="{0EF17CBB-376C-4671-82CC-82EE44234FDE}|Default">
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{0EF17CBB-376C-4671-82CC-82EE44234FDE}|Default">
+  <MonoDevelop.Ide.ItemProperties.core.core FirstBuild="True" />
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PruebaTecnica" expanded="True">
-            <Node name="PruebaTecnica" expanded="True" selected="True">
-              <Node name="Controllers" expanded="True" />
+            <Node name="core" expanded="True">
+              <Node name="core" expanded="True" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.PruebaTecnica PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.ItemProperties.Web.PruebaTecnica PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>Core/Core.csproj</String>
+  </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
