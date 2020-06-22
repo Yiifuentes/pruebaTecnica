@@ -19,10 +19,8 @@ namespace PruebaTecnica.Core.DataProviders.AccesoDatos.DataContext
             if (includeRelatedEntities)
                 usuario = usuario.Include(i => i.Identificacion);
 
-#pragma warning disable CS1701 // Asumiendo que la referencia al ensamblaje coincide con la identidad
-            return usuario.Where(e => e.Identificacion == id).FirstOrDefault();
-#pragma warning restore CS1701 // Asumiendo que la referencia al ensamblaje coincide con la identidad
-        }
+             return usuario.Where(e => e.Identificacion == id).FirstOrDefault();
+         }
 
         public override IList<Usuario> ObtenerLista()
         {

@@ -2,17 +2,13 @@
   <MonoDevelop.Ide.ItemProperties.PruebaTecnica.Web.PruebaTecnica.Web PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="PruebaTecnica/Startup.cs" Line="54" Column="42" />
-      <File FileName="PruebaTecnica/Controllers/WeatherForecastController.cs" Line="27" Column="48" />
-      <File FileName="PruebaTecnica/Program.cs" Line="1" Column="1" />
-      <File FileName="PruebaTecnica.Core/DataProviders/Entity/Seguridad/Usuario.cs" Line="15" Column="1" />
+      <File FileName="PruebaTecnica/Controllers/UsuarioController.cs" Line="71" Column="1" />
+      <File FileName="../../../../Volumes/Transcend/SistemaTicket/Frontend/Startup.cs" Line="178" Column="13" />
+      <File FileName="../../../../Volumes/Transcend/SistemaTicket/Frontend/Controllers/EmpleadoController.cs" Line="36" Column="67" />
+      <File FileName="PruebaTecnica/Startup.cs" Line="47" Column="41" />
+      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/UsuarioRepository.cs" Line="25" Column="34" />
+      <File FileName="PruebaTecnica.Core/DataProviders/Entity/Seguridad/Usuario.cs" Line="23" Column="35" />
       <File FileName="PruebaTecnica.Core/DataProviders/Entity/Seguridad/TipoDocumento.cs" Line="9" Column="1" />
-      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/Context.cs" Line="9" Column="44" />
-      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/UsuarioRepository.cs" Line="22" Column="102" />
-      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/BaseRepository.cs" Line="16" Column="10" />
-      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/Contratos/IBaseRepository.cs" Line="1" Column="1" />
-      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/Contratos/IContext.cs" Line="1" Column="1" />
-      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/Contratos/IUsuarioRepository.cs" Line="7" Column="22" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -23,31 +19,17 @@
                 <Node name="DataProviders" expanded="True">
                   <Node name="AccesoDatos" expanded="True">
                     <Node name="DataContext" expanded="True">
-                      <Node name="Contratos" expanded="True" />
-                      <Node name="BaseRepository.cs" selected="True" />
+                      <Node name="Contratos" expanded="True">
+                        <Node name="IUsuarioRepository.cs" selected="True" />
+                      </Node>
                     </Node>
-                  </Node>
-                  <Node name="Entity" expanded="True">
-                    <Node name="Seguridad" expanded="True" />
                   </Node>
                 </Node>
               </Node>
             </Node>
-            <Node name="PruebaTecnica.Web" expanded="True">
-              <Node name="PruebaTecnica.Web" expanded="True">
-                <Node name="Dependencies" expanded="True" />
-              </Node>
-            </Node>
+            <Node name="PruebaTecnica.Web" expanded="True" />
           </Node>
         </State>
-      </Pad>
-      <Pad Id="ClassPad">
-        <State name="__root__">
-          <Node name="PruebaTecnica" expanded="True" selected="True" />
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

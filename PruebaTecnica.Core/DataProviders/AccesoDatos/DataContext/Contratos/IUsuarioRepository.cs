@@ -8,5 +8,6 @@ namespace PruebaTecnica.Core.DataProviders.AccesoDatos.DataContext.Contratos
     {
         Usuario Obtener(int id, bool includeRelatedEntities = true);
         IList<Usuario> ObtenerLista();
+        
     }
 }

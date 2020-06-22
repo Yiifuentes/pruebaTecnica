@@ -8,8 +8,11 @@ namespace PruebaTecnica.Core.DataProviders.AccesoDatos.DataContext
 {
     public class Context : DbContext, IContext
     {
-        public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<TipoDocumento> TipoDocumentos { get; set; }
+        public Context(DbContextOptions<Context> options)
+           : base(options)
+        {
+
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -20,6 +23,9 @@ namespace PruebaTecnica.Core.DataProviders.AccesoDatos.DataContext
                 .HasIndex(k => k.Identificacion)
                 .IsUnique();
         }
+        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<TipoDocumento> TipoDocumentos { get; set; }
+
 
     }
 }

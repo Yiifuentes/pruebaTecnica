@@ -20,7 +20,7 @@ namespace PruebaTecnica.Core.DataProviders.Entity.Seguridad
         public int Identificacion { get; set; }
 
         [Required]
-        public int TipoIdentificacionId { get; set; }
+        public int TipoDocumentoId { get; set; }
         public TipoDocumento TipoDocumento { get; set; }
 
         [MinLength(8, ErrorMessage = "La clave debe contener mas 8 caracteres")]
