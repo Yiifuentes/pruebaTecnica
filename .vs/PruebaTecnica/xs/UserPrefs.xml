@@ -1,12 +1,18 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{0EF17CBB-376C-4671-82CC-82EE44234FDE}|PruebaTecnica">
   <MonoDevelop.Ide.ItemProperties.PruebaTecnica.Web.PruebaTecnica.Web PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PruebaTecnica/appsettings.Development.json">
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="PruebaTecnica/Controllers/WeatherForecastController.cs" Line="8" Column="36" />
-      <File FileName="PruebaTecnica/Startup.cs" Line="9" Column="24" />
-      <File FileName="PruebaTecnica.Core/Program.cs" Line="1" Column="1" />
-      <File FileName="PruebaTecnica/appsettings.json" Line="1" Column="1" />
-      <File FileName="PruebaTecnica/appsettings.Development.json" Line="1" Column="1" />
+      <File FileName="PruebaTecnica/Startup.cs" Line="54" Column="42" />
+      <File FileName="PruebaTecnica/Controllers/WeatherForecastController.cs" Line="27" Column="48" />
+      <File FileName="PruebaTecnica/Program.cs" Line="1" Column="1" />
+      <File FileName="PruebaTecnica.Core/DataProviders/Entity/Seguridad/Usuario.cs" Line="15" Column="1" />
+      <File FileName="PruebaTecnica.Core/DataProviders/Entity/Seguridad/TipoDocumento.cs" Line="9" Column="1" />
+      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/Context.cs" Line="9" Column="44" />
+      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/UsuarioRepository.cs" Line="22" Column="102" />
+      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/BaseRepository.cs" Line="16" Column="10" />
+      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/Contratos/IBaseRepository.cs" Line="1" Column="1" />
+      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/Contratos/IContext.cs" Line="1" Column="1" />
+      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/Contratos/IUsuarioRepository.cs" Line="7" Column="22" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,23 +20,34 @@
           <Node name="PruebaTecnica" expanded="True">
             <Node name="PruebaTecnica.core" expanded="True">
               <Node name="PruebaTecnica.Core" expanded="True">
-                <Node name="Dependencies" expanded="True">
-                  <Node name="PackageDependencies" expanded="True" />
+                <Node name="DataProviders" expanded="True">
+                  <Node name="AccesoDatos" expanded="True">
+                    <Node name="DataContext" expanded="True">
+                      <Node name="Contratos" expanded="True" />
+                      <Node name="BaseRepository.cs" selected="True" />
+                    </Node>
+                  </Node>
+                  <Node name="Entity" expanded="True">
+                    <Node name="Seguridad" expanded="True" />
+                  </Node>
                 </Node>
               </Node>
             </Node>
             <Node name="PruebaTecnica.Web" expanded="True">
               <Node name="PruebaTecnica.Web" expanded="True">
-                <Node name="Dependencies" expanded="True">
-                  <Node name="PackageDependencies" expanded="True" />
-                </Node>
-                <Node name="appsettings.json" expanded="True">
-                  <Node name="appsettings.Development.json" selected="True" />
-                </Node>
+                <Node name="Dependencies" expanded="True" />
               </Node>
             </Node>
           </Node>
         </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State name="__root__">
+          <Node name="PruebaTecnica" expanded="True" selected="True" />
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
@@ -39,7 +56,6 @@
     <String>Core/Core.csproj</String>
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.PruebaTecnica.core.PruebaTecnica.Core FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

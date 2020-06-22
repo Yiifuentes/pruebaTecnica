@@ -13,5 +13,8 @@
     <Folder Include="DataProviders\" />
     <Folder Include="DataProviders\Entity\" />
     <Folder Include="DataProviders\AccesoDatos\" />
+    <Folder Include="DataProviders\Entity\Seguridad\" />
+    <Folder Include="DataProviders\AccesoDatos\DataContext\" />
+    <Folder Include="DataProviders\AccesoDatos\DataContext\Contratos\" />
   </ItemGroup>
 </Project>
