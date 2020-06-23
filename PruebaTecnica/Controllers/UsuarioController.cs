@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PruebaTecnica.Core.DataProviders.AccesoDatos.DataContext.Contratos;
 using PruebaTecnica.Core.DataProviders.Entity.Seguridad;
+using PruebaTecnica.Web.Comun;
 using PruebaTecnica.Web.Dto;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -14,20 +16,25 @@ using PruebaTecnica.Web.Dto;
 namespace PruebaTecnica.Web.Controllers
 {
     //[Route("api/[controller]")]
-    [Route("[controller]")]
+    //[Route("[controller]")]
     [Produces("application/json")]
-    //[Route("api/[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
 
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepository _IUsuarioRepository;
         private readonly UserManager<Usuario> _userManager;
+        private readonly IJwtFactory _jwtFactory;
+        private readonly IPasswordHasher<Usuario> _passwordHasher;
 
-
-        public UsuarioController(IUsuarioRepository usuarioRepository , UserManager<Usuario> userManager)
+        public UsuarioController(IUsuarioRepository usuarioRepository ,
+            UserManager<Usuario> userManager, IJwtFactory jwtFactory,
+            IPasswordHasher<Usuario> passwordHasher)
         {
             _IUsuarioRepository = usuarioRepository;
             _userManager = userManager;
+            _jwtFactory = jwtFactory;
+            _passwordHasher = passwordHasher;
 
         }
 
@@ -62,41 +69,84 @@ namespace PruebaTecnica.Web.Controllers
         // POST api/values
         [HttpPost]
         public async Task<IActionResult>Post([FromBody] UsuarioDto crear)
-        {   
+        {
+            if (!ModelState.IsValid)
+                return new OkObjectResult(new { Message="error el en formulairo", listaErro=ModelState, Status=StatusCodes.Status500InternalServerError});
+
             Usuario usuario = new Usuario
             {
                 Nombre = crear.Nombre,
                 Apellido = crear.Apellido,
                 Identificacion = crear.Identificacion,
                 TipoDocumentoId = crear.TipoIdentificacionId,
-                Email = crear.Email
+                Email = crear.Email,
+                UserName = crear.Nombre + crear.Apellido,
+                EmailConfirmed = true,
             };
 
-            try
-            {
-                _IUsuarioRepository.Crear(usuario);
-            }
-            catch (Exception ex)
+            var hasedPassword = _passwordHasher.HashPassword(usuario, crear.PasswordHash);
+            usuario.PasswordHash = hasedPassword;
+
+            var usuarioNuevo =await _userManager.CreateAsync(usuario);
+             
+            if (usuarioNuevo.Succeeded)
             {
                 return new OkObjectResult(new
                 {
-                    Message = ex.Message,
-                    Status = StatusCodes.Status500InternalServerError
+                    Message = "Proceso termino exitosamente",
+                    Status = StatusCodes.Status200OK
                 });
             }
-
-            return new OkObjectResult(new {
-                Message = "Proceso termino exitosamente",
-                Status = StatusCodes.Status200OK
-            });
+            else
+            {
+                return new OkObjectResult(new
+                {
+                    Message = "Proceso termino"+ usuarioNuevo.Errors,
+                    Status = StatusCodes.Status500InternalServerError
+                });
+            } 
+            
 
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] UsuarioDto editar)
+        private async Task CrearClave(UsuarioDto crear, Usuario usuario)
         {
-            var obtenerUsuario = _IUsuarioRepository.Obtener(id);
+            var user = await _userManager.FindByIdAsync(usuario.Id);
+            var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            var changePasswordResult = await _userManager.ChangePasswordAsync(user, crear.PasswordHash, crear.PasswordHash);
+
+        }
+
+        private async Task<ClaimsIdentity> GetClaimsIdentity(string userName, string password)
+        {
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
+                return await Task.FromResult<ClaimsIdentity>(null);
+
+            // get the user to verifty
+            var userToVerify = await _userManager.FindByNameAsync(userName);
+
+            if (userToVerify == null) return await Task.FromResult<ClaimsIdentity>(null);
+
+            // check the credentials
+            if (await _userManager.CheckPasswordAsync(userToVerify, password))
+            {
+                var rolUsuario = await _userManager.GetRolesAsync(userToVerify);
+                //var rolInfo = rolUsuario.FirstOrDefault();
+                return await Task.FromResult(_jwtFactory.GenerateClaimsIdentity(userName, userToVerify.Id, rolUsuario.FirstOrDefault()));
+            }
+
+            // Credentials are invalid, or account doesn't exist
+            return await Task.FromResult<ClaimsIdentity>(null);
+        }
+
+
+
+        // PUT api/values/5
+        [HttpPost]
+        public IActionResult Put([FromBody] UsuarioDto editar)
+        {
+            var obtenerUsuario = _IUsuarioRepository.obtenerUsuarioPoIdentificacion(editar.Identificacion);
 
             if (obtenerUsuario  == null)
                 return new OkObjectResult(new { Message = "Ussuario no existe", Status = StatusCodes.Status404NotFound });
@@ -116,10 +166,14 @@ namespace PruebaTecnica.Web.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpPost]
+        public IActionResult Delete([FromBody] UsuarioDto eliminar)
         {
-            _IUsuarioRepository.Eliminar(id);
+            var obtenerUsuario = _IUsuarioRepository.obtenerUsuarioPoIdentificacion(eliminar.Identificacion);
+            if(obtenerUsuario ==null)
+                return new OkObjectResult(new { Message = "Usuario No encontrado", Status = StatusCodes.Status404NotFound});
+
+            _IUsuarioRepository.Eliminar(obtenerUsuario);
 
             return new OkObjectResult(new
             {

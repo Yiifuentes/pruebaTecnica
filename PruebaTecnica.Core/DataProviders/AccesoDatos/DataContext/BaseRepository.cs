@@ -15,7 +15,7 @@ namespace PruebaTecnica.Core.DataProviders.AccesoDatos.DataContext
             Context = context;
         }
 
-        public abstract TEntity Obtener(int id, bool includeRelatedEntities = true);
+        public abstract TEntity Obtener(string id, bool includeRelatedEntities = true);
         public abstract IList<TEntity> ObtenerLista();
 
         public void Crear(TEntity entity)
@@ -30,12 +30,14 @@ namespace PruebaTecnica.Core.DataProviders.AccesoDatos.DataContext
             Context.SaveChanges();
         }
 
-        public void Eliminar(int id)
+         
+
+        public void Eliminar(TEntity entity)
         {
-            var set = Context.Set<TEntity>();
-            var entity = set.Find(id);
-            set.Remove(entity);
+            Context.Remove(entity);
             Context.SaveChanges();
         }
+ 
+ 
     }
 }

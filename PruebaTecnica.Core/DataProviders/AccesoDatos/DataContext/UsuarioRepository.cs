@@ -13,15 +13,18 @@ namespace PruebaTecnica.Core.DataProviders.AccesoDatos.DataContext
         {
         }
 
-        public override Usuario Obtener(int id, bool includeRelatedEntities = true)
+        public override Usuario Obtener(string id, bool includeRelatedEntities = true)
         {
             var usuario = Context.Usuarios.AsQueryable();
             if (includeRelatedEntities)
                 usuario = usuario.Include(i => i.Identificacion);
 
-             return usuario.Where(e => e.Identificacion == id).FirstOrDefault();
+             return usuario.Where(e => e.Id == id).FirstOrDefault();
          }
-
+        public Usuario obtenerUsuarioPoIdentificacion(int id)
+        {
+            return Context.Usuarios.Where(i=>i.Identificacion==id).FirstOrDefault();
+        }
         public override IList<Usuario> ObtenerLista()
         {
 #pragma warning disable CS1701 // Asumiendo que la referencia al ensamblaje coincide con la identidad

@@ -3,11 +3,14 @@
   <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="PruebaTecnica/ClientApp/src/app/app.module.ts" Line="13" Column="1" />
-      <File FileName="PruebaTecnica/ClientApp/src/app/usuario/usuario.component.ts" Line="25" Column="39" />
-      <File FileName="PruebaTecnica/Controllers/UsuarioController.cs" Line="128" Column="16" />
-      <File FileName="PruebaTecnica/ClientApp/src/app/usuario/usuario.component.html" Line="18" Column="42" />
-      <File FileName="PruebaTecnica/Dto/UsuarioDto.cs" Line="24" Column="35" />
-      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/UsuarioRepository.cs" Line="20" Column="66" />
+      <File FileName="PruebaTecnica/Controllers/UsuarioController.cs" Line="149" Column="31" />
+      <File FileName="PruebaTecnica/ClientApp/src/app/usuario/usuario.component.ts" Line="44" Column="32" />
+      <File FileName="PruebaTecnica/Dto/UsuarioDto.cs" Line="9" Column="1" />
+      <File FileName="PruebaTecnica/Startup.cs" Line="44" Column="1" />
+      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/Context.cs" Line="12" Column="1" />
+      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/UsuarioRepository.cs" Line="27" Column="1" />
+      <File FileName="../../../../Volumes/Transcend/SistemaTicket/Frontend/Controllers/SesionController.cs" Line="32" Column="10" NotebookId="1" />
+      <File FileName="../../../../Volumes/Transcend/SistemaTicket/Frontend/Controllers/CuentaController.cs" Line="192" Column="110" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,7 +24,9 @@
                       <Node name="Contratos" expanded="True" />
                     </Node>
                   </Node>
-                  <Node name="Entity" expanded="True" />
+                  <Node name="Entity" expanded="True">
+                    <Node name="Seguridad" expanded="True" />
+                  </Node>
                 </Node>
               </Node>
             </Node>

@@ -90,8 +90,19 @@ namespace PruebaTecnica
                 configureOptions.TokenValidationParameters = tokenValidationParameters;
                 configureOptions.SaveToken = true;
             });
+            var builder = services.AddIdentityCore<Usuario>(o =>
+            {
+                // configure identity options
+                o.Password.RequireDigit = false;
+                o.Password.RequireLowercase = false;
+                o.Password.RequireUppercase = false;
+                o.Password.RequireNonAlphanumeric = false;
+                o.Password.RequiredLength = 6;
+            });
 
 
+            builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
+            builder.AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory

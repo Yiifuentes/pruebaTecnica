@@ -6,8 +6,10 @@ namespace PruebaTecnica.Core.DataProviders.AccesoDatos.DataContext.Contratos
 {
     public interface IUsuarioRepository: IBaseRepository<Usuario>
     {
-        Usuario Obtener(int id, bool includeRelatedEntities = true);
+        Usuario Obtener(string id, bool includeRelatedEntities = true);
         IList<Usuario> ObtenerLista();
-        
+        Usuario obtenerUsuarioPoIdentificacion(int id);
+
+
     }
 }

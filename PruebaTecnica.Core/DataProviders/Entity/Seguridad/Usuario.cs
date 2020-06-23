@@ -8,8 +8,7 @@ namespace PruebaTecnica.Core.DataProviders.Entity.Seguridad
     [Table("Usuario")]
     public class Usuario : IdentityUser
     {
-        public int Id { get; set; }
-
+ 
         [Required]
         public string Nombre { get; set; }
 
