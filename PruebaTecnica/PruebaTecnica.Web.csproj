@@ -31,12 +31,15 @@
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     <None Remove="ClientApp\src\app\usuario\usuario.component.ts" />
+    <None Remove="ClientApp\src\app\usuario\usuarioService.ts" />
+    <None Remove="ClientApp\src\app\comun\BaseService.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Dto\" />
     <Folder Include="Comun\" />
     <Folder Include="ClientApp\src\app\usuario\" />
+    <Folder Include="ClientApp\src\app\comun\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PruebaTecnica.Core\PruebaTecnica.Core.csproj">
@@ -45,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\usuario\usuario.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\usuario\usuarioService.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\comun\BaseService.ts" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->

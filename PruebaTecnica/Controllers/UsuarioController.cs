@@ -42,26 +42,7 @@ namespace PruebaTecnica.Web.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            Usuario usuario = new Usuario
-            {
-                Nombre = "Fidel",
-                Apellido = "Fuentes",
-                Identificacion = 10001,
-                TipoDocumentoId = 1,
-                Email = "fuentesl@hotmail.com"
-            };
-            try
-            {
-             _IUsuarioRepository.Crear(usuario);
-            }
-            catch (Exception ex)
-            {
-                return new OkObjectResult(new
-                {
-                    Message = ex.Message,
-                    Status = StatusCodes.Status500InternalServerError
-                });
-            }
+
 
             IList<Usuario> lista =_IUsuarioRepository.ObtenerLista();
             lista.Add(new Usuario { Nombre = "Maria", Apellido = "Sanchez" });
@@ -80,17 +61,29 @@ namespace PruebaTecnica.Web.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult>Post([FromBody]string value)
-        {
-            var usuario = new Usuario
+        public async Task<IActionResult>Post([FromBody] UsuarioDto crear)
+        {   
+            Usuario usuario = new Usuario
             {
-                Nombre = "Fidel",
-                Apellido = "Fuentes",
-                Identificacion = 10001,
-                TipoDocumentoId = 1,
-                Email = "fuentesl@hotmail.com"
+                Nombre = crear.Nombre,
+                Apellido = crear.Apellido,
+                Identificacion = crear.Identificacion,
+                TipoDocumentoId = crear.TipoIdentificacionId,
+                Email = crear.Email
             };
-            //var crear = await _userManager.CreateAsync(usuario);
+
+            try
+            {
+                _IUsuarioRepository.Crear(usuario);
+            }
+            catch (Exception ex)
+            {
+                return new OkObjectResult(new
+                {
+                    Message = ex.Message,
+                    Status = StatusCodes.Status500InternalServerError
+                });
+            }
 
             return new OkObjectResult(new {
                 Message = "Proceso termino exitosamente",
@@ -101,15 +94,38 @@ namespace PruebaTecnica.Web.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody] UsuarioDto editar)
         {
+            var obtenerUsuario = _IUsuarioRepository.Obtener(id);
 
+            if (obtenerUsuario  == null)
+                return new OkObjectResult(new { Message = "Ussuario no existe", Status = StatusCodes.Status404NotFound });
+
+
+            obtenerUsuario.Nombre = editar.Nombre;
+            obtenerUsuario.Apellido = editar.Apellido;
+            obtenerUsuario.Email = editar.Email;
+
+            _IUsuarioRepository.Actualizar(obtenerUsuario);
+
+            return new OkObjectResult(new
+            {
+                Message = "Proceso termino exitosamente",
+                Status = StatusCodes.Status200OK
+            });
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            _IUsuarioRepository.Eliminar(id);
+
+            return new OkObjectResult(new
+            {
+                Message = "Proceso termino exitosamente",
+                Status = StatusCodes.Status200OK
+            });
         }
     }
 }

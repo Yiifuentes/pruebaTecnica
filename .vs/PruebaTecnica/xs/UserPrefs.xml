@@ -2,13 +2,12 @@
   <MonoDevelop.Ide.ItemProperties.PruebaTecnica.Web.PruebaTecnica.Web PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="PruebaTecnica/Controllers/UsuarioController.cs" Line="71" Column="1" />
-      <File FileName="../../../../Volumes/Transcend/SistemaTicket/Frontend/Startup.cs" Line="178" Column="13" />
-      <File FileName="../../../../Volumes/Transcend/SistemaTicket/Frontend/Controllers/EmpleadoController.cs" Line="36" Column="67" />
-      <File FileName="PruebaTecnica/Startup.cs" Line="47" Column="41" />
-      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/UsuarioRepository.cs" Line="25" Column="34" />
-      <File FileName="PruebaTecnica.Core/DataProviders/Entity/Seguridad/Usuario.cs" Line="23" Column="35" />
-      <File FileName="PruebaTecnica.Core/DataProviders/Entity/Seguridad/TipoDocumento.cs" Line="9" Column="1" />
+      <File FileName="PruebaTecnica/ClientApp/src/app/app.module.ts" Line="13" Column="1" />
+      <File FileName="PruebaTecnica/ClientApp/src/app/usuario/usuario.component.ts" Line="25" Column="39" />
+      <File FileName="PruebaTecnica/Controllers/UsuarioController.cs" Line="128" Column="16" />
+      <File FileName="PruebaTecnica/ClientApp/src/app/usuario/usuario.component.html" Line="18" Column="42" />
+      <File FileName="PruebaTecnica/Dto/UsuarioDto.cs" Line="24" Column="35" />
+      <File FileName="PruebaTecnica.Core/DataProviders/AccesoDatos/DataContext/UsuarioRepository.cs" Line="20" Column="66" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,15 +18,30 @@
                 <Node name="DataProviders" expanded="True">
                   <Node name="AccesoDatos" expanded="True">
                     <Node name="DataContext" expanded="True">
-                      <Node name="Contratos" expanded="True">
-                        <Node name="IUsuarioRepository.cs" selected="True" />
-                      </Node>
+                      <Node name="Contratos" expanded="True" />
                     </Node>
                   </Node>
+                  <Node name="Entity" expanded="True" />
                 </Node>
               </Node>
             </Node>
-            <Node name="PruebaTecnica.Web" expanded="True" />
+            <Node name="PruebaTecnica.Web" expanded="True">
+              <Node name="PruebaTecnica.Web" expanded="True">
+                <Node name="ClientApp" expanded="True">
+                  <Node name="src" expanded="True">
+                    <Node name="app" expanded="True">
+                      <Node name="comun" expanded="True" />
+                      <Node name="fetch-data" expanded="True" />
+                      <Node name="usuario" expanded="True" />
+                    </Node>
+                  </Node>
+                </Node>
+                <Node name="Controllers" expanded="True">
+                  <Node name="UsuarioController.cs" selected="True" />
+                </Node>
+                <Node name="Dto" expanded="True" />
+              </Node>
+            </Node>
           </Node>
         </State>
       </Pad>
