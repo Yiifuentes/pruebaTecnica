@@ -1,26 +1,16 @@
-﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{BC06608F-8F95-4082-958B-B88836F17F73}|Default">
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{D2432E5B-313C-4E17-BF80-E453AA665601}|Pruebas unitarias">
   <MonoDevelop.Ide.ItemProperties.PruebaTecnica.Web.PruebaTecnica.Web PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="PruebaTecnica/Comun/JwtFactory.cs" Line="1" Column="1" />
-      <File FileName="PruebaTecnica/Comun/Tokens.cs" />
-      <File FileName="../../../../Volumes/Transcend/SistemaTicket/Frontend/Controllers/CuentaController.cs" />
-      <File FileName="PruebaTecnica/Controllers/PerfilUsuario.cs" />
-      <File FileName="PruebaTecnica/appsettings.json" Line="19" Column="1" />
-      <File FileName="PruebaTecnica/Controllers/WeatherForecastController.cs" />
+      <File FileName="PruebaTecnica.Core.UnitTest/UnitTest1.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="PruebaTecnica" expanded="True" selected="True">
-            <Node name="PruebaTecnica.core" expanded="True">
-              <Node name="PruebaTecnica.Core" expanded="True">
-                <Node name="DataProviders" expanded="True" />
-              </Node>
-            </Node>
-            <Node name="PruebaTecnica.Web" expanded="True">
-              <Node name="PruebaTecnica.Web" expanded="True">
-                <Node name="Dto" expanded="True" />
+          <Node name="PruebaTecnica" expanded="True">
+            <Node name="PruebaTecnica.Core.UnitTest" expanded="True">
+              <Node name="PruebaTecnica.Core.UnitTest" expanded="True">
+                <Node name="UnitTest1.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -28,6 +18,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.PruebaTecnica.Core.UnitTest.PruebaTecnica.Core.UnitTest PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <DisabledProjects>
     <String>Core/Core.csproj</String>
