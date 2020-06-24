@@ -1,79 +1,41 @@
-<<<<<<< Updated upstream
-﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{C37ADDF1-FB18-49AD-BB0C-607EA40CC2F7}|Default">
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{BC06608F-8F95-4082-958B-B88836F17F73}|Default">
   <MonoDevelop.Ide.ItemProperties.PruebaTecnica.Web.PruebaTecnica.Web PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="PruebaTecnica/Controllers/UsuarioController.cs" Line="134" Column="13" />
-      <File FileName="PruebaTecnica.Core/DataProviders/Entity/Seguridad/Usuario.cs" />
-      <File FileName="PruebaTecnica/Comun/IJwtFactory.cs" />
-      <File FileName="PruebaTecnica/Comun/JwtFactory.cs" />
-      <File FileName="PruebaTecnica/Comun/Tokens.cs" Line="22" Column="1" />
-      <File FileName="../../../../Volumes/Transcend/SistemaTicket/Frontend/Controllers/CuentaController.cs" Line="32" Column="1" />
-      <File FileName="PruebaTecnica/Startup.cs" Line="53" Column="72" />
-      <File FileName="PruebaTecnica/Controllers/PerfilUsuario.cs" Line="10" Column="36" />
-      <File FileName="PruebaTecnica/appsettings.json" Line="7" Column="6" />
-=======
-﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{0EF17CBB-376C-4671-82CC-82EE44234FDE}|Default">
-  <MonoDevelop.Ide.ItemProperties.PruebaTecnica.Web.PruebaTecnica.Web PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench>
-    <Files>
-      <File FileName="PruebaTecnica/Comun/JwtFactory.cs" />
-      <File FileName="PruebaTecnica/Comun/Tokens.cs" Line="25" Column="1" />
-      <File FileName="../../../../Volumes/Transcend/SistemaTicket/Frontend/Controllers/CuentaController.cs" Line="32" Column="1" />
-      <File FileName="PruebaTecnica/Startup.cs" Line="76" Column="1" />
-      <File FileName="PruebaTecnica/Controllers/PerfilUsuario.cs" Line="23" Column="10" />
-      <File FileName="PruebaTecnica/appsettings.json" Line="11" Column="1" />
->>>>>>> Stashed changes
-      <File FileName="PruebaTecnica/Controllers/WeatherForecastController.cs" Line="30" Column="72" />
+      <File FileName="PruebaTecnica/Comun/JwtFactory.cs" Line="1" Column="1" />
+      <File FileName="PruebaTecnica/Comun/Tokens.cs" />
+      <File FileName="../../../../Volumes/Transcend/SistemaTicket/Frontend/Controllers/CuentaController.cs" />
+      <File FileName="PruebaTecnica/Controllers/PerfilUsuario.cs" />
+      <File FileName="PruebaTecnica/appsettings.json" Line="19" Column="1" />
+      <File FileName="PruebaTecnica/Controllers/WeatherForecastController.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-<<<<<<< Updated upstream
-          <Node name="PruebaTecnica" expanded="True">
+          <Node name="PruebaTecnica" expanded="True" selected="True">
             <Node name="PruebaTecnica.core" expanded="True">
               <Node name="PruebaTecnica.Core" expanded="True">
-                <Node name="DataProviders" expanded="True">
-                  <Node name="AccesoDatos" expanded="True">
-                    <Node name="DataContext" expanded="True" />
-                  </Node>
-                  <Node name="Entity" expanded="True" />
-                </Node>
+                <Node name="DataProviders" expanded="True" />
               </Node>
             </Node>
             <Node name="PruebaTecnica.Web" expanded="True">
               <Node name="PruebaTecnica.Web" expanded="True">
-                <Node name="Comun" expanded="True" />
-                <Node name="Controllers" expanded="True">
-                  <Node name="UsuarioController.cs" selected="True" />
-                </Node>
                 <Node name="Dto" expanded="True" />
-                <Node name="appsettings.json" expanded="True" />
               </Node>
             </Node>
-=======
-          <Node name="PruebaTecnica" expanded="True" selected="True">
-            <Node name="PruebaTecnica" expanded="True" />
->>>>>>> Stashed changes
           </Node>
         </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <DisabledProjects>
     <String>Core/Core.csproj</String>
+    <String>PruebaTecnica/PruebaTecnica.csproj</String>
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-<<<<<<< Updated upstream
-      <Breakpoint enabled="false" file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/Comun/Tokens.cs" relfile="PruebaTecnica/Comun/Tokens.cs" line="16" column="1" />
-=======
->>>>>>> Stashed changes
       <Breakpoint enabled="false" file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/2zsqdtpk.ywo~" relfile="PruebaTecnica/2zsqdtpk.ywo~" line="184" column="1" />
       <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/2zsqdtpk.ywo~" relfile="PruebaTecnica/2zsqdtpk.ywo~" line="69" column="1" />
       <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/2zsqdtpk.ywo~" relfile="PruebaTecnica/2zsqdtpk.ywo~" line="90" column="1" />
