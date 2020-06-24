@@ -130,20 +130,31 @@ namespace PruebaTecnica
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseAuthentication();
-
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
             }
 
+            //app.UseRouting();
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller}/{action=Index}/{id?}");
+            //});
+
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                 name: "default",
+                 pattern: "{controller}/{action=Index}/{id?}");
             });
 
             app.UseSpa(spa =>
@@ -158,7 +169,7 @@ namespace PruebaTecnica
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
-            InicializarDB.Inicializar(context);
+             InicializarDB.Inicializar(context);
 
         }
     }

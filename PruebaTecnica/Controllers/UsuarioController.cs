@@ -5,7 +5,6 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -29,13 +28,11 @@ namespace PruebaTecnica.Web.Controllers
         private readonly IJwtFactory _jwtFactory;
         private readonly IPasswordHasher<Usuario> _passwordHasher;
         private readonly JwtIssuerOptions _jwtOptions;
-        private readonly ClaimsPrincipal _caller;
 
         public UsuarioController(IUsuarioRepository usuarioRepository ,
             UserManager<Usuario> userManager, 
             IPasswordHasher<Usuario> passwordHasher,
             IJwtFactory jwtFactory,
-             IHttpContextAccessor httpContextAccessor,
             IOptions<JwtIssuerOptions> jwtOptions)
         {
             _IUsuarioRepository = usuarioRepository;
@@ -43,7 +40,6 @@ namespace PruebaTecnica.Web.Controllers
             _jwtFactory = jwtFactory;
             _passwordHasher = passwordHasher;
             _jwtOptions = jwtOptions.Value;
-            _caller = httpContextAccessor.HttpContext.User;
 
         }
  
@@ -84,22 +80,7 @@ namespace PruebaTecnica.Web.Controllers
             string clave = BitConverter.ToString(MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(crear.PasswordHash))).Replace("-", "");
             usuario.PasswordHash = clave;
             var usuarioNuevo =await _userManager.CreateAsync(usuario);
-
-            //var user = await _userManager.FindByIdAsync(usuario.Id);
-            //var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-            //try
-            //{
-            //    var result = await _userManager.ResetPasswordAsync(user, code, crear.PasswordHash);
-            //    if (result.Succeeded)
-            //    {
-            //        Console.WriteLine("ok");
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-
-            //}
-
+  
             if (usuarioNuevo.Succeeded)
             {
                 return new OkObjectResult(new
@@ -149,6 +130,7 @@ namespace PruebaTecnica.Web.Controllers
         public IActionResult Delete([FromBody] UsuarioDto eliminar)
         {
             var obtenerUsuario = _IUsuarioRepository.obtenerUsuarioPoIdentificacion(eliminar.Identificacion);
+
             if(obtenerUsuario ==null)
                 return new OkObjectResult(new { Message = "Usuario No encontrado", Status = StatusCodes.Status404NotFound});
 
@@ -177,9 +159,8 @@ namespace PruebaTecnica.Web.Controllers
                 return BadRequest(("login_failure", " Invalido Usuario o Password", ModelState));
             }
 
-            var jwt = await Tokens.GenerateJwt(identity, _jwtFactory, credentials.UserName, _jwtOptions, new JsonSerializerSettings { Formatting = Formatting.Indented });
-            //var nuevoJtw=jwt.Split(",");
-            //jwt = jwt.Replace("}", ",   nombre_usuario:"+ identity.Name+ "}");
+            var jwt = await Tokens.GenerateJwt(identity, _jwtFactory, credentials.UserName,
+                _jwtOptions, new JsonSerializerSettings { Formatting = Formatting.Indented });
             return new OkObjectResult(jwt);
         }
         private async Task<ClaimsIdentity> GetClaimsIdentity(string userName, string password)
@@ -202,23 +183,6 @@ namespace PruebaTecnica.Web.Controllers
         }
 
 
-        [Authorize]
-        [HttpGet]
-        public async Task<IActionResult> ObtenerPerfil()
-        {
-            var userId = _caller.Claims.Single(c => c.Type == "id"); 
-
-
-            var usuario = await _userManager.FindByIdAsync(userId.Value);
-
-
-            return new OkObjectResult(new
-            {
-                Message = "Proceso termino exitosamente",
-                perfil= usuario,
-                Status = StatusCodes.Status200OK
-            });
-        }
 
 
     }
