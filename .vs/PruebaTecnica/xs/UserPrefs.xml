@@ -2,11 +2,13 @@
   <MonoDevelop.Ide.ItemProperties.PruebaTecnica.Web.PruebaTecnica.Web PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="PruebaTecnica/Controllers/UsuarioController.cs" Line="197" Column="2" />
-      <File FileName="PruebaTecnica.Core/DataProviders/Entity/Seguridad/Usuario.cs" Line="9" Column="18" />
-      <File FileName="PruebaTecnica/Comun/IJwtFactory.cs" Line="8" Column="24" />
-      <File FileName="PruebaTecnica/Comun/JwtFactory.cs" Line="55" Column="1" />
-      <File FileName="PruebaTecnica/Comun/Tokens.cs" Line="22" Column="1" />
+      <File FileName="PruebaTecnica/Controllers/UsuarioController.cs" Line="214" Column="1" />
+      <File FileName="PruebaTecnica.Core/DataProviders/Entity/Seguridad/Usuario.cs" />
+      <File FileName="PruebaTecnica/Comun/IJwtFactory.cs" />
+      <File FileName="PruebaTecnica/Comun/JwtFactory.cs" />
+      <File FileName="PruebaTecnica/Comun/Tokens.cs" />
+      <File FileName="../../../../Volumes/Transcend/SistemaTicket/Frontend/Controllers/CuentaController.cs" Line="32" Column="1" />
+      <File FileName="PruebaTecnica/Startup.cs" Line="134" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -24,10 +26,9 @@
             <Node name="PruebaTecnica.Web" expanded="True">
               <Node name="PruebaTecnica.Web" expanded="True">
                 <Node name="Comun" expanded="True" />
-                <Node name="Controllers" expanded="True">
-                  <Node name="UsuarioController.cs" selected="True" />
-                </Node>
+                <Node name="Controllers" expanded="True" />
                 <Node name="Dto" expanded="True" />
+                <Node name="Startup.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -42,11 +43,13 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/Comun/Tokens.cs" relfile="PruebaTecnica/Comun/Tokens.cs" line="16" column="1" />
-      <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/Controllers/UsuarioController.cs" relfile="PruebaTecnica/Controllers/UsuarioController.cs" line="186" column="1" />
-      <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/Controllers/UsuarioController.cs" relfile="PruebaTecnica/Controllers/UsuarioController.cs" line="68" column="1" />
+      <Breakpoint enabled="false" file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/Comun/Tokens.cs" relfile="PruebaTecnica/Comun/Tokens.cs" line="16" column="1" />
+      <Breakpoint enabled="false" file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/Controllers/UsuarioController.cs" relfile="PruebaTecnica/Controllers/UsuarioController.cs" line="186" column="1" />
+      <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/Controllers/UsuarioController.cs" relfile="PruebaTecnica/Controllers/UsuarioController.cs" line="71" column="1" />
       <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/Controllers/UsuarioController.cs" relfile="PruebaTecnica/Controllers/UsuarioController.cs" line="92" column="1" />
-      <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/Controllers/UsuarioController.cs" relfile="PruebaTecnica/Controllers/UsuarioController.cs" line="199" column="1" />
+      <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/Controllers/UsuarioController.cs" relfile="PruebaTecnica/Controllers/UsuarioController.cs" line="196" column="1" />
+      <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/Controllers/UsuarioController.cs" relfile="PruebaTecnica/Controllers/UsuarioController.cs" line="86" column="1" />
+      <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/Controllers/UsuarioController.cs" relfile="PruebaTecnica/Controllers/UsuarioController.cs" line="207" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

@@ -130,6 +130,8 @@ namespace PruebaTecnica
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseAuthentication();
+
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
@@ -156,7 +158,6 @@ namespace PruebaTecnica
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
-            app.UseAuthentication();
             InicializarDB.Inicializar(context);
 
         }

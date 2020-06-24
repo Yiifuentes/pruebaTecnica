@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +16,9 @@ using PruebaTecnica.Core.DataProviders.Entity.Seguridad;
 using PruebaTecnica.Web.Comun;
 using PruebaTecnica.Web.Dto;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
+ 
 namespace PruebaTecnica.Web.Controllers
-{
-    //[Route("api/[controller]")]
-    //[Route("[controller]")]
+{ 
     [Produces("application/json")]
     [Route("api/[controller]/[action]")]
 
@@ -29,11 +29,13 @@ namespace PruebaTecnica.Web.Controllers
         private readonly IJwtFactory _jwtFactory;
         private readonly IPasswordHasher<Usuario> _passwordHasher;
         private readonly JwtIssuerOptions _jwtOptions;
+        private readonly ClaimsPrincipal _caller;
 
         public UsuarioController(IUsuarioRepository usuarioRepository ,
             UserManager<Usuario> userManager, 
             IPasswordHasher<Usuario> passwordHasher,
             IJwtFactory jwtFactory,
+             IHttpContextAccessor httpContextAccessor,
             IOptions<JwtIssuerOptions> jwtOptions)
         {
             _IUsuarioRepository = usuarioRepository;
@@ -41,6 +43,7 @@ namespace PruebaTecnica.Web.Controllers
             _jwtFactory = jwtFactory;
             _passwordHasher = passwordHasher;
             _jwtOptions = jwtOptions.Value;
+            _caller = httpContextAccessor.HttpContext.User;
 
         }
  
@@ -76,29 +79,26 @@ namespace PruebaTecnica.Web.Controllers
                 TipoDocumentoId = crear.TipoIdentificacionId,
                 Email = crear.Email,
                 UserName = crear.Nombre + crear.Apellido,
-                EmailConfirmed = true,
-                PasswordHash=crear.PasswordHash
-             };
-
-            //var hasedPassword = _passwordHasher.HashPassword(usuario, crear.PasswordHash);
-            //usuario.PasswordHash = hasedPassword;
-
+                EmailConfirmed = true             };
+ 
+            string clave = BitConverter.ToString(MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(crear.PasswordHash))).Replace("-", "");
+            usuario.PasswordHash = clave;
             var usuarioNuevo =await _userManager.CreateAsync(usuario);
 
-            var user = await _userManager.FindByIdAsync(usuario.Id);
-            var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-            try
-            {
-                var result = await _userManager.ResetPasswordAsync(user, code, crear.PasswordHash);
-                if (result.Succeeded)
-                {
-                    Console.WriteLine("ok");
-                }
-            }
-            catch (Exception ex)
-            {
+            //var user = await _userManager.FindByIdAsync(usuario.Id);
+            //var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+            //try
+            //{
+            //    var result = await _userManager.ResetPasswordAsync(user, code, crear.PasswordHash);
+            //    if (result.Succeeded)
+            //    {
+            //        Console.WriteLine("ok");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
 
-            }
+            //}
 
             if (usuarioNuevo.Succeeded)
             {
@@ -187,22 +187,37 @@ namespace PruebaTecnica.Web.Controllers
             if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
                 return await Task.FromResult<ClaimsIdentity>(null);
 
-            // get the user to verifty
             var userToVerify = await _userManager.FindByNameAsync(userName);
 
             if (userToVerify == null) return await Task.FromResult<ClaimsIdentity>(null);
 
-            // check the credentials
-            bool checkClave = await _userManager.CheckPasswordAsync(userToVerify, password);
-  
-            checkClave = true;
-            if (checkClave)
+             string clave = BitConverter.ToString(MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(password))).Replace("-", "");
+
+             if (userToVerify.PasswordHash== clave)
             {
                 return await Task.FromResult(_jwtFactory.GenerateClaimsIdentity(userName, userToVerify.Id, "notiene"));
             }
 
-            // Credentials are invalid, or account doesn't exist
-            return await Task.FromResult<ClaimsIdentity>(null);
+             return await Task.FromResult<ClaimsIdentity>(null);
+        }
+
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> ObtenerPerfil()
+        {
+            var userId = _caller.Claims.Single(c => c.Type == "id"); 
+
+
+            var usuario = await _userManager.FindByIdAsync(userId.Value);
+
+
+            return new OkObjectResult(new
+            {
+                Message = "Proceso termino exitosamente",
+                perfil= usuario,
+                Status = StatusCodes.Status200OK
+            });
         }
 
 
