@@ -1,22 +1,66 @@
-﻿<Properties StartupConfiguration="{0EF17CBB-376C-4671-82CC-82EE44234FDE}|Default">
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{C37ADDF1-FB18-49AD-BB0C-607EA40CC2F7}|Default">
+  <MonoDevelop.Ide.ItemProperties.PruebaTecnica.Web.PruebaTecnica.Web PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="PruebaTecnica/Controllers/UsuarioController.cs" Line="134" Column="13" />
+      <File FileName="PruebaTecnica.Core/DataProviders/Entity/Seguridad/Usuario.cs" />
+      <File FileName="PruebaTecnica/Comun/IJwtFactory.cs" />
+      <File FileName="PruebaTecnica/Comun/JwtFactory.cs" />
+      <File FileName="PruebaTecnica/Comun/Tokens.cs" Line="22" Column="1" />
+      <File FileName="../../../../Volumes/Transcend/SistemaTicket/Frontend/Controllers/CuentaController.cs" Line="32" Column="1" />
+      <File FileName="PruebaTecnica/Startup.cs" Line="53" Column="72" />
+      <File FileName="PruebaTecnica/Controllers/PerfilUsuario.cs" Line="10" Column="36" />
+      <File FileName="PruebaTecnica/appsettings.json" Line="7" Column="6" />
+      <File FileName="PruebaTecnica/Controllers/WeatherForecastController.cs" Line="30" Column="72" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PruebaTecnica" expanded="True">
-            <Node name="PruebaTecnica" expanded="True" selected="True">
-              <Node name="Controllers" expanded="True" />
+            <Node name="PruebaTecnica.core" expanded="True">
+              <Node name="PruebaTecnica.Core" expanded="True">
+                <Node name="DataProviders" expanded="True">
+                  <Node name="AccesoDatos" expanded="True">
+                    <Node name="DataContext" expanded="True" />
+                  </Node>
+                  <Node name="Entity" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+            <Node name="PruebaTecnica.Web" expanded="True">
+              <Node name="PruebaTecnica.Web" expanded="True">
+                <Node name="Comun" expanded="True" />
+                <Node name="Controllers" expanded="True">
+                  <Node name="UsuarioController.cs" selected="True" />
+                </Node>
+                <Node name="Dto" expanded="True" />
+                <Node name="appsettings.json" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.PruebaTecnica PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>Core/Core.csproj</String>
+  </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint enabled="false" file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/Comun/Tokens.cs" relfile="PruebaTecnica/Comun/Tokens.cs" line="16" column="1" />
+      <Breakpoint enabled="false" file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/2zsqdtpk.ywo~" relfile="PruebaTecnica/2zsqdtpk.ywo~" line="184" column="1" />
+      <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/2zsqdtpk.ywo~" relfile="PruebaTecnica/2zsqdtpk.ywo~" line="69" column="1" />
+      <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/2zsqdtpk.ywo~" relfile="PruebaTecnica/2zsqdtpk.ywo~" line="90" column="1" />
+      <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/2zsqdtpk.ywo~" relfile="PruebaTecnica/2zsqdtpk.ywo~" line="194" column="1" />
+      <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/2zsqdtpk.ywo~" relfile="PruebaTecnica/2zsqdtpk.ywo~" line="84" column="1" />
+      <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/2zsqdtpk.ywo~" relfile="PruebaTecnica/2zsqdtpk.ywo~" line="206" column="1" />
+      <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/2zsqdtpk.ywo~" relfile="PruebaTecnica/2zsqdtpk.ywo~" line="164" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

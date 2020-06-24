@@ -12,8 +12,17 @@
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'PruebaTecnica' ">
+    <StartAction>Project</StartAction>
+    <ApplicationURL>http://localhost:5000</ApplicationURL>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.1.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,8 +30,27 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+    <None Remove="ClientApp\src\app\usuario\usuario.component.ts" />
+    <None Remove="ClientApp\src\app\usuario\usuarioService.ts" />
+    <None Remove="ClientApp\src\app\comun\BaseService.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dto\" />
+    <Folder Include="Comun\" />
+    <Folder Include="ClientApp\src\app\usuario\" />
+    <Folder Include="ClientApp\src\app\comun\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PruebaTecnica.Core\PruebaTecnica.Core.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\usuario\usuario.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\usuario\usuarioService.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\comun\BaseService.ts" />
+  </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

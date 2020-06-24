@@ -1,0 +1,124 @@
+<h1 id="tableLabel">lista Usuario</h1>
+
+
+
+<p *ngIf="!listaUsuario"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido.</th>
+            <th>identificacion</th>
+            <th>email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let usuario of listaUsuario "  (click)="seleccionEditar(usuario)">
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.apellido }}</td>
+            <td>{{ usuario.identificacion }}</td>
+            <td>{{ usuario.email }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3> Formulario Usuario. </h3>
+<div class="col-lg-6">
+    <dl class="row mb-0">
+        <div class="col-sm-4 text-sm-right">
+            <label for="nombre"> Nombre:</label>
+        </div>
+        <div class="col-sm-8 text-sm-left">
+
+            <input class="form-control input-style"
+                   formcontrolname="nombre" type="text" id="nombre"
+                   [(ngModel)]="formulario.nombre" name="nombre">
+        </div>
+    </dl>
+    <dl class="row mb-0">
+        <div class="col-sm-4 text-sm-right">
+            <label for="apellido">Apellido:</label>
+        </div>
+        <div class="col-sm-8 text-sm-left">
+
+            <input class="form-control input-style"
+                   formcontrolname="apellido" id="apellido" type="text"
+                   [(ngModel)]="formulario.apellido" name="apellido">
+        </div>
+    </dl>
+    <dl class="row mb-0">
+        <div class="col-sm-4 text-sm-right">
+            <label for="identificacion"> identificacion:</label>
+        </div>
+        <div class="col-sm-8 text-sm-left">
+
+            <input class="form-control input-style"
+                   formcontrolname="identificacion"
+                   ng-pattern="/^[0-9])?$/" step="0" type="number"
+                   id="identificacion"
+                   [(ngModel)]="formulario.identificacion" name="identificacion">
+        </div>
+    </dl>
+    <dl class="row mb-0">
+        <div class="col-sm-4 text-sm-right">
+            <label for="tipoIdentificacionId">Tipo Identificacion:</label>
+        </div>
+        <div class="col-sm-8 text-sm-left">
+
+            <input class="form-control input-style"
+                   formcontrolname="tipoIdentificacionId" id="tipoIdentificacionId" type="number"
+                   [(ngModel)]="formulario.tipoIdentificacionId" name="tipoIdentificacionId">
+        </div>
+    </dl>
+
+    <dl class="row mb-0">
+        <div class="col-sm-4 text-sm-right">
+            <label for="email"> Correo:</label>
+        </div>
+        <div class="col-sm-8 text-sm-left">
+
+            <input class="form-control input-style"
+                   formcontrolname="email"
+                   type="email"
+                   id="email"
+                   [(ngModel)]="formulario.email" name="email">
+        </div>
+    </dl>
+    <dl class="row mb-0">
+        <div class="col-sm-4 text-sm-right">
+            <label for="passwordHash">Clave:</label>
+        </div>
+        <div class="col-sm-8 text-sm-left">
+
+            <input class="form-control input-style"
+                   formcontrolname="passwordHash" id="passwordHash" type="text"
+                   [(ngModel)]="formulario.passwordHash" name="passwordHash">
+        </div>
+    </dl>
+    <div class="alert alert-primary" role="alert">
+        This is a primary alert—check it out!
+    </div>
+    <hr>
+    <dl class="row mb-0">
+        <br>
+        <div class="col-sm-4 text-sm-right">
+            <dt><label></label></dt>
+        </div>
+        <div class="col-sm-8 text-sm-left">
+            <button *ngIf="crear" class="btn btn-group btn-info btn-xs m-t-n-xs" (click)="crearUsuario()">
+                <strong>Crear <span class='glyphicon glyphicon-plus'></span></strong>
+            </button>
+            <button *ngIf="editar" class="btn btn-group btn-info btn-xs m-t-n-xs" (click)="editarUsuario()">
+                <strong>Editar <span class='glyphicon glyphicon-plus'></span></strong>
+            </button>
+            <button *ngIf="borrar" class="btn  btn-danger btn-xs m-t-n-xs" (click)="removerUsuario()">
+                <strong>Borra<span class='glyphicon glyphicon-trash'></span></strong>
+            </button>
+
+            <button *ngIf="borrar" class="btn  btn-primary btn-group btn-xs m-t-n-xs" (click)="nuevoUsuario()">
+                <strong>Nuevo <span class='glyphicon glyphicon-plus'></span></strong>
+            </button>
+        </div>
+    </dl>
+</div>
