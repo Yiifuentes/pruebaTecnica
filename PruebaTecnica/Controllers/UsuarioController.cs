@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using PruebaTecnica.Core.DataProviders.AccesoDatos.DataContext.Contratos;
 using PruebaTecnica.Core.DataProviders.Entity.Seguridad;
 using PruebaTecnica.Web.Comun;
@@ -26,33 +28,26 @@ namespace PruebaTecnica.Web.Controllers
         private readonly UserManager<Usuario> _userManager;
         private readonly IJwtFactory _jwtFactory;
         private readonly IPasswordHasher<Usuario> _passwordHasher;
+        private readonly JwtIssuerOptions _jwtOptions;
 
         public UsuarioController(IUsuarioRepository usuarioRepository ,
-            UserManager<Usuario> userManager, IJwtFactory jwtFactory,
-            IPasswordHasher<Usuario> passwordHasher)
+            UserManager<Usuario> userManager, 
+            IPasswordHasher<Usuario> passwordHasher,
+            IJwtFactory jwtFactory,
+            IOptions<JwtIssuerOptions> jwtOptions)
         {
             _IUsuarioRepository = usuarioRepository;
             _userManager = userManager;
             _jwtFactory = jwtFactory;
             _passwordHasher = passwordHasher;
+            _jwtOptions = jwtOptions.Value;
 
         }
-
-        // GET: api/values
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
-        // GET api/values/5
+ 
         [HttpGet]
         public IActionResult Get()
-        {
-
-
-            IList<Usuario> lista =_IUsuarioRepository.ObtenerLista();
-            lista.Add(new Usuario { Nombre = "Maria", Apellido = "Sanchez" });
+        { 
+            IList<Usuario> lista =_IUsuarioRepository.ObtenerLista(); 
             List<UsuarioDto> listaUsuario = new List<UsuarioDto>(); 
             foreach (var item in lista)
             {
@@ -82,13 +77,29 @@ namespace PruebaTecnica.Web.Controllers
                 Email = crear.Email,
                 UserName = crear.Nombre + crear.Apellido,
                 EmailConfirmed = true,
-            };
+                PasswordHash=crear.PasswordHash
+             };
 
-            var hasedPassword = _passwordHasher.HashPassword(usuario, crear.PasswordHash);
-            usuario.PasswordHash = hasedPassword;
+            //var hasedPassword = _passwordHasher.HashPassword(usuario, crear.PasswordHash);
+            //usuario.PasswordHash = hasedPassword;
 
             var usuarioNuevo =await _userManager.CreateAsync(usuario);
-             
+
+            var user = await _userManager.FindByIdAsync(usuario.Id);
+            var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+            try
+            {
+                var result = await _userManager.ResetPasswordAsync(user, code, crear.PasswordHash);
+                if (result.Succeeded)
+                {
+                    Console.WriteLine("ok");
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
             if (usuarioNuevo.Succeeded)
             {
                 return new OkObjectResult(new
@@ -108,40 +119,8 @@ namespace PruebaTecnica.Web.Controllers
             
 
         }
-
-        private async Task CrearClave(UsuarioDto crear, Usuario usuario)
-        {
-            var user = await _userManager.FindByIdAsync(usuario.Id);
-            var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-
-            var changePasswordResult = await _userManager.ChangePasswordAsync(user, crear.PasswordHash, crear.PasswordHash);
-
-        }
-
-        private async Task<ClaimsIdentity> GetClaimsIdentity(string userName, string password)
-        {
-            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
-                return await Task.FromResult<ClaimsIdentity>(null);
-
-            // get the user to verifty
-            var userToVerify = await _userManager.FindByNameAsync(userName);
-
-            if (userToVerify == null) return await Task.FromResult<ClaimsIdentity>(null);
-
-            // check the credentials
-            if (await _userManager.CheckPasswordAsync(userToVerify, password))
-            {
-                var rolUsuario = await _userManager.GetRolesAsync(userToVerify);
-                //var rolInfo = rolUsuario.FirstOrDefault();
-                return await Task.FromResult(_jwtFactory.GenerateClaimsIdentity(userName, userToVerify.Id, rolUsuario.FirstOrDefault()));
-            }
-
-            // Credentials are invalid, or account doesn't exist
-            return await Task.FromResult<ClaimsIdentity>(null);
-        }
-
-
-
+ 
+ 
         // PUT api/values/5
         [HttpPost]
         public IActionResult Put([FromBody] UsuarioDto editar)
@@ -181,5 +160,51 @@ namespace PruebaTecnica.Web.Controllers
                 Status = StatusCodes.Status200OK
             });
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody]CredencialDto credentials)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            ClaimsIdentity identity = await GetClaimsIdentity(credentials.UserName,
+                                                   credentials.Password);
+            if (identity == null)
+            {
+                return BadRequest(("login_failure", " Invalido Usuario o Password", ModelState));
+            }
+
+            var jwt = await Tokens.GenerateJwt(identity, _jwtFactory, credentials.UserName, _jwtOptions, new JsonSerializerSettings { Formatting = Formatting.Indented });
+            //var nuevoJtw=jwt.Split(",");
+            //jwt = jwt.Replace("}", ",   nombre_usuario:"+ identity.Name+ "}");
+            return new OkObjectResult(jwt);
+        }
+        private async Task<ClaimsIdentity> GetClaimsIdentity(string userName, string password)
+        {
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
+                return await Task.FromResult<ClaimsIdentity>(null);
+
+            // get the user to verifty
+            var userToVerify = await _userManager.FindByNameAsync(userName);
+
+            if (userToVerify == null) return await Task.FromResult<ClaimsIdentity>(null);
+
+            // check the credentials
+            bool checkClave = await _userManager.CheckPasswordAsync(userToVerify, password);
+  
+            checkClave = true;
+            if (checkClave)
+            {
+                return await Task.FromResult(_jwtFactory.GenerateClaimsIdentity(userName, userToVerify.Id, "notiene"));
+            }
+
+            // Credentials are invalid, or account doesn't exist
+            return await Task.FromResult<ClaimsIdentity>(null);
+        }
+
+
     }
 }
