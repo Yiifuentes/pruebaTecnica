@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{C37ADDF1-FB18-49AD-BB0C-607EA40CC2F7}|Default">
   <MonoDevelop.Ide.ItemProperties.PruebaTecnica.Web.PruebaTecnica.Web PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.Workbench>
@@ -11,11 +12,24 @@
       <File FileName="PruebaTecnica/Startup.cs" Line="53" Column="72" />
       <File FileName="PruebaTecnica/Controllers/PerfilUsuario.cs" Line="10" Column="36" />
       <File FileName="PruebaTecnica/appsettings.json" Line="7" Column="6" />
+=======
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{0EF17CBB-376C-4671-82CC-82EE44234FDE}|Default">
+  <MonoDevelop.Ide.ItemProperties.PruebaTecnica.Web.PruebaTecnica.Web PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="PruebaTecnica/Comun/JwtFactory.cs" />
+      <File FileName="PruebaTecnica/Comun/Tokens.cs" Line="25" Column="1" />
+      <File FileName="../../../../Volumes/Transcend/SistemaTicket/Frontend/Controllers/CuentaController.cs" Line="32" Column="1" />
+      <File FileName="PruebaTecnica/Startup.cs" Line="76" Column="1" />
+      <File FileName="PruebaTecnica/Controllers/PerfilUsuario.cs" Line="23" Column="10" />
+      <File FileName="PruebaTecnica/appsettings.json" Line="11" Column="1" />
+>>>>>>> Stashed changes
       <File FileName="PruebaTecnica/Controllers/WeatherForecastController.cs" Line="30" Column="72" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
+<<<<<<< Updated upstream
           <Node name="PruebaTecnica" expanded="True">
             <Node name="PruebaTecnica.core" expanded="True">
               <Node name="PruebaTecnica.Core" expanded="True">
@@ -37,6 +51,10 @@
                 <Node name="appsettings.json" expanded="True" />
               </Node>
             </Node>
+=======
+          <Node name="PruebaTecnica" expanded="True" selected="True">
+            <Node name="PruebaTecnica" expanded="True" />
+>>>>>>> Stashed changes
           </Node>
         </State>
       </Pad>
@@ -52,7 +70,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
+<<<<<<< Updated upstream
       <Breakpoint enabled="false" file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/Comun/Tokens.cs" relfile="PruebaTecnica/Comun/Tokens.cs" line="16" column="1" />
+=======
+>>>>>>> Stashed changes
       <Breakpoint enabled="false" file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/2zsqdtpk.ywo~" relfile="PruebaTecnica/2zsqdtpk.ywo~" line="184" column="1" />
       <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/2zsqdtpk.ywo~" relfile="PruebaTecnica/2zsqdtpk.ywo~" line="69" column="1" />
       <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/2zsqdtpk.ywo~" relfile="PruebaTecnica/2zsqdtpk.ywo~" line="90" column="1" />
