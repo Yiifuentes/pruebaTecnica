@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using PruebaTecnica.Core.DataProviders.AccesoDatos.DataContext.Contratos;
@@ -28,19 +29,22 @@ namespace PruebaTecnica.Web.Controllers
         private readonly IJwtFactory _jwtFactory;
         private readonly IPasswordHasher<Usuario> _passwordHasher;
         private readonly JwtIssuerOptions _jwtOptions;
+        private readonly ILogger _logger;
+        public string messageLog = "";
 
         public UsuarioController(IUsuarioRepository usuarioRepository ,
             UserManager<Usuario> userManager, 
             IPasswordHasher<Usuario> passwordHasher,
             IJwtFactory jwtFactory,
-            IOptions<JwtIssuerOptions> jwtOptions)
+            IOptions<JwtIssuerOptions> jwtOptions,
+            ILogger<UsuarioController> logger)
         {
             _IUsuarioRepository = usuarioRepository;
             _userManager = userManager;
             _jwtFactory = jwtFactory;
             _passwordHasher = passwordHasher;
             _jwtOptions = jwtOptions.Value;
-
+            _logger = logger;
         }
  
         [HttpGet]
@@ -79,24 +83,45 @@ namespace PruebaTecnica.Web.Controllers
  
             string clave = BitConverter.ToString(MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(crear.PasswordHash))).Replace("-", "");
             usuario.PasswordHash = clave;
+            try
+            {
             var usuarioNuevo =await _userManager.CreateAsync(usuario);
-  
-            if (usuarioNuevo.Succeeded)
-            {
-                return new OkObjectResult(new
+
+                if (usuarioNuevo.Succeeded)
                 {
-                    Message = "Proceso termino exitosamente",
-                    Status = StatusCodes.Status200OK
-                });
+                    messageLog = $"usuario creado {DateTime.UtcNow.ToLongTimeString()}";
+                    _logger.LogInformation(messageLog);
+
+                    return new OkObjectResult(new
+                    {
+                        Message = "Proceso termino exitosamente",
+                        Status = StatusCodes.Status200OK
+                    });
+                }
+                else
+                {
+                    messageLog = $"error usuario  {DateTime.UtcNow.ToLongTimeString()}";
+                    _logger.LogInformation(messageLog);
+                    return new OkObjectResult(new
+                    {
+                        Message = "Proceso termino" + usuarioNuevo.Errors,
+                        Status = StatusCodes.Status500InternalServerError
+                    });
+                }
             }
-            else
+            catch (Exception ex)
             {
+                 messageLog = $"usuario creado {DateTime.UtcNow.ToLongTimeString()+", Exceptio: "+ex.Message}";
+                _logger.LogInformation(messageLog);
+
                 return new OkObjectResult(new
                 {
-                    Message = "Proceso termino"+ usuarioNuevo.Errors,
+                    Message = "Error al crear usuario "  ,
                     Status = StatusCodes.Status500InternalServerError
                 });
-            } 
+
+            }
+   
             
 
         }
@@ -109,7 +134,11 @@ namespace PruebaTecnica.Web.Controllers
             var obtenerUsuario = _IUsuarioRepository.obtenerUsuarioPoIdentificacion(editar.Identificacion);
 
             if (obtenerUsuario  == null)
-                return new OkObjectResult(new { Message = "Ussuario no existe", Status = StatusCodes.Status404NotFound });
+            {
+                messageLog = $"Error de filtro usuario {DateTime.UtcNow.ToLongTimeString()}";
+                _logger.LogInformation(messageLog);
+                return new OkObjectResult(new { Message = "Usuario no existe", Status = StatusCodes.Status404NotFound });
+            }
 
 
             obtenerUsuario.Nombre = editar.Nombre;
@@ -131,11 +160,17 @@ namespace PruebaTecnica.Web.Controllers
         {
             var obtenerUsuario = _IUsuarioRepository.obtenerUsuarioPoIdentificacion(eliminar.Identificacion);
 
-            if(obtenerUsuario ==null)
-                return new OkObjectResult(new { Message = "Usuario No encontrado", Status = StatusCodes.Status404NotFound});
+            if(obtenerUsuario == null)
+            {
+                messageLog = $"Error de filtro usuario {DateTime.UtcNow.ToLongTimeString()}";
+                _logger.LogInformation(messageLog);
+                return new OkObjectResult(new { Message = "Usuario No encontrado", Status = StatusCodes.Status404NotFound });
+            }
 
             _IUsuarioRepository.Eliminar(obtenerUsuario);
 
+            messageLog = $"eliminar usuario {DateTime.UtcNow.ToLongTimeString()+", Id: "+ obtenerUsuario.Id}";
+            _logger.LogInformation(messageLog);
             return new OkObjectResult(new
             {
                 Message = "Proceso termino exitosamente",
@@ -156,11 +191,17 @@ namespace PruebaTecnica.Web.Controllers
                                                    credentials.Password);
             if (identity == null)
             {
+
                 return BadRequest(("login_failure", " Invalido Usuario o Password", ModelState));
             }
 
             var jwt = await Tokens.GenerateJwt(identity, _jwtFactory, credentials.UserName,
                 _jwtOptions, new JsonSerializerSettings { Formatting = Formatting.Indented });
+
+            messageLog = $"Sesion usuario {DateTime.UtcNow.ToLongTimeString() + ", UserName: " + credentials.UserName}";
+            _logger.LogInformation(messageLog);
+
+
             return new OkObjectResult(jwt);
         }
         private async Task<ClaimsIdentity> GetClaimsIdentity(string userName, string password)
