@@ -1,13 +1,12 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{F0A493B1-D529-45B9-9402-DECFF4E6D430}|Default">
   <MonoDevelop.Ide.ItemProperties.PruebaTecnica.Web.PruebaTecnica.Web PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PruebaTecnica/Dto/UsuarioDto.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="PruebaTecnica.Core.UnitTest/UnitTest1.cs" Line="15" Column="27" />
       <File FileName="PruebaTecnica.Core.UnitTest/TestUsuarioRepository.cs" Line="5" Column="1" />
-      <File FileName="PruebaTecnica/Controllers/UsuarioController.cs" Line="181" Column="19" />
-      <File FileName="PruebaTecnica/Program.cs" Line="14" Column="47" />
+      <File FileName="PruebaTecnica/Controllers/UsuarioController.cs" Line="187" Column="1" />
       <File FileName="PruebaTecnica/Controllers/WeatherForecastController.cs" Line="21" Column="49" />
-      <File FileName="PruebaTecnica/Dto/UsuarioDto.cs" Line="8" Column="1" />
+      <File FileName="PruebaTecnica/Dto/UsuarioDto.cs" Line="21" Column="81" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,10 +17,10 @@
             </Node>
             <Node name="PruebaTecnica.Web" expanded="True">
               <Node name="PruebaTecnica.Web" expanded="True">
-                <Node name="Controllers" expanded="True" />
-                <Node name="Dto" expanded="True">
-                  <Node name="UsuarioDto.cs" selected="True" />
+                <Node name="Controllers" expanded="True">
+                  <Node name="WeatherForecastController.cs" selected="True" />
                 </Node>
+                <Node name="Dto" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -37,7 +36,9 @@
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/fidelfuentes/Documents/pruebaTecnicaGitHub/PruebaTecnica/Controllers/UsuarioController.cs" relfile="PruebaTecnica/Controllers/UsuarioController.cs" line="172" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

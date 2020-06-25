@@ -100,7 +100,7 @@ namespace PruebaTecnica.Web.Controllers
                 }
                 else
                 {
-                    messageLog = $"error usuario  {DateTime.UtcNow.ToLongTimeString()}";
+                    messageLog = $"error al crear usuario  {DateTime.UtcNow.ToLongTimeString()}";
                     _logger.LogInformation(messageLog);
                     return new OkObjectResult(new
                     {
@@ -111,18 +111,16 @@ namespace PruebaTecnica.Web.Controllers
             }
             catch (Exception ex)
             {
-                 messageLog = $"usuario creado {DateTime.UtcNow.ToLongTimeString()+", Exceptio: "+ex.Message}";
-                _logger.LogInformation(messageLog);
-
-                return new OkObjectResult(new
-                {
-                    Message = "Error al crear usuario "  ,
-                    Status = StatusCodes.Status500InternalServerError
-                });
-
+                 messageLog = $"usuario creado {DateTime.UtcNow.ToLongTimeString()+", Exceptio: "+ex}";
+                _logger.LogError(messageLog);
             }
-   
-            
+
+            return new OkObjectResult(new
+            {
+                Message = "Error al crear usuario ",
+                Status = StatusCodes.Status500InternalServerError
+            });
+
 
         }
  
@@ -144,13 +142,26 @@ namespace PruebaTecnica.Web.Controllers
             obtenerUsuario.Nombre = editar.Nombre;
             obtenerUsuario.Apellido = editar.Apellido;
             obtenerUsuario.Email = editar.Email;
+            try
+            { 
+                _IUsuarioRepository.Actualizar(obtenerUsuario);
 
-            _IUsuarioRepository.Actualizar(obtenerUsuario);
+                return new OkObjectResult(new
+                {
+                    Message = "Proceso termino exitosamente",
+                    Status = StatusCodes.Status200OK
+                });
+            }
+            catch (Exception ex)
+            { 
+                messageLog = $"Error editando usuario {DateTime.UtcNow.ToLongTimeString()}";
+                _logger.LogError(messageLog);
+            }
 
             return new OkObjectResult(new
             {
-                Message = "Proceso termino exitosamente",
-                Status = StatusCodes.Status200OK
+                Message = "Proceso termino con error",
+                Status = StatusCodes.Status500InternalServerError
             });
         }
 
@@ -166,15 +177,30 @@ namespace PruebaTecnica.Web.Controllers
                 _logger.LogInformation(messageLog);
                 return new OkObjectResult(new { Message = "Usuario No encontrado", Status = StatusCodes.Status404NotFound });
             }
+            try
+            {
+                _IUsuarioRepository.Eliminar(obtenerUsuario);
 
-            _IUsuarioRepository.Eliminar(obtenerUsuario);
+                messageLog = $"eliminar usuario {DateTime.UtcNow.ToLongTimeString()+", Id: "+ obtenerUsuario.Id}";
+                _logger.LogInformation(messageLog);
 
-            messageLog = $"eliminar usuario {DateTime.UtcNow.ToLongTimeString()+", Id: "+ obtenerUsuario.Id}";
-            _logger.LogInformation(messageLog);
+                return new OkObjectResult(new
+                {
+                    Message = "Proceso termino exitosamente",
+                    Status = StatusCodes.Status200OK
+                });
+            }
+            catch (Exception ex)
+            {
+
+                messageLog = $"Error al eliminar usuario {DateTime.UtcNow.ToLongTimeString()+" Exception"+ex}";
+                _logger.LogError(messageLog);
+            }
+
             return new OkObjectResult(new
             {
-                Message = "Proceso termino exitosamente",
-                Status = StatusCodes.Status200OK
+                Message = "Proceso termino con errores",
+                Status = StatusCodes.Status500InternalServerError
             });
         }
 
